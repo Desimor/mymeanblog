@@ -7,7 +7,7 @@ var userRouter = require('./routers/user.router');
 var postRouter = require('./routers/post.router');
 
 var port = process.env.PORT || 8080;
-var mongoURI = process.env.MONGOURI || require('./secrets').mongoURI;
+var mongoURI = process.env.MONGOURI || require('./secrets').MONGOURI;
 
 server.use(express.static(__dirname + '/public'));
 server.use(bodyParser.json());
