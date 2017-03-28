@@ -21,7 +21,7 @@ angular.module('mymeanblog')
         controller: 'PostController',
         templateUrl: 'html/views/create.html'
       })
-      .when('/edit', {
+      .when('/edit/:postId', {
         controller: 'PostController',
         templateUrl: 'html/views/edit.html'
       })
