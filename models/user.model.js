@@ -13,9 +13,8 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    password: {
+    salt: {
         type: String,
-        required: true
     },
     hash: {
         type: String
@@ -24,12 +23,12 @@ const userSchema = mongoose.Schema({
 
 userSchema.methods.setPassword = function(password) {
     this.salt = crypto.randomBytes(16).toString('hex');
-    this.hash = crypto.pbkdf25Sync(password, this.salt, 1000, 64);
-}
+    this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+};
 userSchema.methods.validPassword = function(password) {
-    const hash = crypto.pbkdf25Sync(password, this.salt, 1000, 64);
-    return this.hash = hash; //If they equal, ye shall pass, otherwise GTHO. I mean, you should probably leave. :D
-}
+    const hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+    return this.hash === hash; //If they equal, ye shall pass, otherwise GTHO. I mean, you should probably leave. :D
+};
 userSchema.methods.generateJwt = function() {
     const expiration = new Date();
     expiration.setDate(expiration.getDate() + 7); //Create a date that's 7 days in the future.
@@ -39,7 +38,7 @@ userSchema.methods.generateJwt = function() {
         name: this.name,
         exp: parseInt(expiration.getTime() / 1000)
     }, signature);
-}
+};
 
 var User = mongoose.model('User', userSchema);
 module.exports = User;

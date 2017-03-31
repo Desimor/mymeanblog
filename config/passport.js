@@ -5,7 +5,7 @@ const User = require('../models/user.model');
 
 passport.use(new LocalStrategy({
       usernameField: 'email'
-      }),
+      },
       function howWeAuth(username, password, done){
             User.findOne({email: username}, function(err, user){
                   if(err){
@@ -23,4 +23,4 @@ passport.use(new LocalStrategy({
                   }
                   return done(null, user);
             });
-      });
+      }));
