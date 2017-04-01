@@ -18,8 +18,14 @@
     function signup(user){
       return $http.post('/signup', user)
                   .then(function(response){
+<<<<<<< HEAD
                     console.log(response);
                     return response; // This sometimes does not work.
+=======
+                    return response; // this sometimes does not work
+                                    // should be available in the next
+                                    // then statement.
+>>>>>>> c65bfb9001d7aa68e18e61134328789ae0ef5f40
                   });
     }
     function getAll(){
@@ -76,7 +82,11 @@
         payload = token.split('.')[1];
         payload = $window.atob(payload);
         payload = JSON.parse(payload);
+<<<<<<< HEAD
         var isExpired = payload.exp > Date.now() / 1000;
+=======
+        var isExpired = payload.exp < Date.now() / 1000;
+>>>>>>> c65bfb9001d7aa68e18e61134328789ae0ef5f40
         if(isExpired){
           logout();
           return false;
@@ -90,7 +100,10 @@
     function logout(){
       localStorage.removeItem('mymeanblog-token');
     }
+<<<<<<< HEAD
     isLoggedIn();
+=======
+>>>>>>> c65bfb9001d7aa68e18e61134328789ae0ef5f40
     return {
       getAll: getAll,
       login: login,

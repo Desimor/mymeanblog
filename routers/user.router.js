@@ -27,16 +27,15 @@ router.post('/login', function(req, res, next){
     }
     if(!user){
       return res.status(404).json({
-        msg: 'The username and/or password you have provided is incorrect.'
+        msg: 'The username and/or password you have provided is incorrect'
       });
     }
-    console.log(user);
     if(user && !user.validPassword(req.body.password)){
       return res.status(401).json({
-        msg: 'The username and/or password you have provided is incorrect.'
+        msg: 'The username and/or password you have provided is incorrect'
       });
-    } 
-    res.status(200).json({
+    }
+    return res.status(200).json({
       token: user.generateJwt()
     });
   })(req, res, next);

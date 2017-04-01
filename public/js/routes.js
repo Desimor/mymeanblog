@@ -1,49 +1,51 @@
-angular.module('mymeanblog')
-          .config(RouterConfig);
+(function() {
+  angular.module('mymeanblog')
+      .config(RouterConfig);
 
-    RouterConfig.$inject = ["$routeProvider"];
-    
-    function RouterConfig($routeProvider){
-      $routeProvider
+  RouterConfig.$inject = ['$routeProvider'];
+
+  function RouterConfig($routeProvider){
+    $routeProvider
       .when('/', {
         controller: 'SignupController',
         templateUrl: 'html/views/signup.html',
-        restrictied: {
+        restricted: {
           access: false
         }
       })
       .when('/login', {
         controller: 'LoginController',
         templateUrl: 'html/views/login.html',
-        restrictied: {
+        restricted: {
           access: false
         }
       })
       .when('/dashboard', {
         controller: 'DashboardController',
         templateUrl: 'html/views/dashboard.html',
-        restrictied: {
+        restricted: {
           access: true
         }
       })
       .when('/create', {
         controller: 'PostController',
         templateUrl: 'html/views/create.html',
-        restrictied: {
+        restricted: {
           access: true
         }
       })
       .when('/edit/:postId', {
         controller: 'PostController',
         templateUrl: 'html/views/edit.html',
-        restrictied: {
+        restricted: {
           access: true
         }
       })
       .otherwise({
         redirectTo: '/',
-        restrictied: {
+        restricted: {
           access: false
         }
       });
-    }
+  }
+}());

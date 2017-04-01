@@ -1,7 +1,7 @@
 (function() {
   angular.module('mymeanblog', [
-    'ngRoute',
-    ]);  
+    "ngRoute",
+  ]);
 
-    
+  
 }());
